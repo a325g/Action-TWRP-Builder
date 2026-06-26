@@ -20,16 +20,20 @@ jobs:
 
       - name: Free Disk Space (Slimhub)
         uses: rokibhasansagar/slimhub_actions@main
-        with:
-          # Turn 'false' any tools you do not need during your debug session 
-          # to wipe them and maximize storage.
-          
+
+      - name: Max Aggressive Extra Cleanup
+        run: |
+          echo "=== Removing extra bulky directories ==="
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
 
       - name: Check Available Space
         run: |
-          echo "=== Disk Space After Slimhub ==="
+          echo "=== Disk Space After Slimhub & Manual Clean ==="
           df -h
-          
 
       - name: Start tmate session
         # Only runs if you checked the box during manual trigger
