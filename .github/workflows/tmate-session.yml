@@ -18,10 +18,22 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Environment
+      - name: Free Disk Space (Slimhub)
+        uses: haandol/slimhub-action@v1
+        with:
+          # Turn 'false' any tools you do not need during your debug session 
+          # to wipe them and maximize storage.
+          android: false
+          dotnet: false
+          haskell: false
+          codeql: false
+          docker: false
+
+      - name: Check Available Space
         run: |
-          echo "Setting up dependencies..."
-          # Add any setup commands here (e.g., npm install, pip install)
+          echo "=== Disk Space After Slimhub ==="
+          df -h
+          
 
       - name: Start tmate session
         # Only runs if you checked the box during manual trigger
@@ -30,7 +42,6 @@ jobs:
         with: 
            limit-access-to-actor: false
 
-        
       - name: Finalize Build
         run: echo "Workflow continued after tmate session was closed."
         
