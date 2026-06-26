@@ -19,15 +19,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Free Disk Space (Slimhub)
-        uses: haandol/slimhub-action@v1
+        uses: rokibhasansagar/slimhub_actions@main
         with:
           # Turn 'false' any tools you do not need during your debug session 
           # to wipe them and maximize storage.
-          android: false
-          dotnet: false
-          haskell: false
-          codeql: false
-          docker: false
+          
 
       - name: Check Available Space
         run: |
